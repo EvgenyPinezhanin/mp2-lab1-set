@@ -124,18 +124,36 @@ TSet TSet::operator~(void) // дополнение
 
 istream &operator>>(istream &istr, TSet &s) // ввод
 {
-    for (int i = 0; i < s.MaxPower; i++)
+	char c;
+	int k;
+	istr >> c;
+	while(c != ')')
     {
-        istr >> s.BitField;
+        istr >> k >> c;
+		s.BitField.GetBit(k);
     }
     return istr;
 }
 
 ostream& operator<<(ostream &ostr, const TSet &s) // вывод
 {
+	ostr << "(";
+	bool b = false;
     for (int i = 0; i < s.MaxPower; i++)
     {
-        ostr << s.BitField;
+		if (s.BitField.GetBit(i))
+		{
+			if (!b)
+			{
+				ostr << i;
+				b = true;
+			}
+			else
+			{
+				ostr << ", " << i;
+			}
+		}
     }
+	ostr << ")";
     return ostr;
 }
