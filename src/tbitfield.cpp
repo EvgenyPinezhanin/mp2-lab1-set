@@ -104,9 +104,10 @@ int TBitField::operator==(const TBitField &bf) const // сравнение
 	if (pMem[i] != bf.pMem[i]) return 0;
   }
   int k = bf.BitLen % (sizeof(TELEM)*8);
+  int z = sizeof(TELEM) * 8 * (MemLen - 1);
   for (int i = 0; i < k; i++)
   {
-    if (GetBit(sizeof(TELEM)*8*(MemLen - 1) + i) != bf.GetBit(sizeof(TELEM)*8*(MemLen - 1) + i)) return 0;
+    if (GetBit(z + i) != bf.GetBit(z + i)) return 0;
   }
   return 1;
 }
@@ -120,9 +121,10 @@ int TBitField::operator!=(const TBitField &bf) const // сравнение
     if (pMem[i] != bf.pMem[i]) return 1;
   }
   int k = bf.BitLen % (sizeof(TELEM)*8);
+  int z = sizeof(TELEM) * 8 * (MemLen - 1);
   for (int i = 0; i < k; i++)
   {
-    if (GetBit(sizeof(TELEM)*8*(MemLen - 1) + i) != bf.GetBit(sizeof(TELEM)*8*(MemLen - 1) + i)) return 1;
+    if (GetBit(z + i) != bf.GetBit(z + i)) return 1;
   }
   return 0;
 }
