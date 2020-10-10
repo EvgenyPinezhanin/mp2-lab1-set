@@ -63,14 +63,6 @@ void TSet::MultipleNumber(int k) const
 	}
 	m = m * *this;
 	cout << m;
-
-	/*
-	cout << '{';
-	for (int i = 0; i < MaxPower; i++)
-	{
-		if (IsMember(i) && i % k == 0) cout << i << " ";
-	}cout << '}';
-	*/
 }
 
 int TSet::GetMaxPower(void) const // получить макс. к-во эл-тов
