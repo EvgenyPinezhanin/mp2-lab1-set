@@ -47,13 +47,13 @@ int TSet::IsMember(const int Elem) const // элемент множества?
 
 void TSet::InsElem(const int Elem) // включение элемента множества
 {
-    if (Elem < 0 || Elem >= MaxPower) throw -1;
+    if (Elem < 0 || Elem >= MaxPower) throw logic_error("The position is not in the allowed range");
     BitField.SetBit(Elem);
 }
 
 void TSet::DelElem(const int Elem) // исключение элемента множества
 {
-    if (Elem < 0 || Elem >= MaxPower) throw -1;
+    if (Elem < 0 || Elem >= MaxPower) throw logic_error("The position is not in the allowed range");
     BitField.ClrBit(Elem);
 }
 
@@ -91,7 +91,7 @@ TSet TSet::operator+(const TSet &s) // объединение
 TSet TSet::operator+(const int Elem) // объединение с элементом
 {
     TSet res(MaxPower);
-    if (Elem < 0 || Elem >= MaxPower) throw -1;
+    if (Elem < 0 || Elem >= MaxPower) throw logic_error("The element is not in the allowed range");
     res.BitField.SetBit(Elem);
     return res;
 }
@@ -99,7 +99,7 @@ TSet TSet::operator+(const int Elem) // объединение с элемент
 TSet TSet::operator-(const int Elem) // разность с элементом
 {
     TSet res(MaxPower);
-    if (Elem < 0 || Elem >= MaxPower) throw -1;
+    if (Elem < 0 || Elem >= MaxPower) throw logic_error("The element is not in the allowed range");
     res.BitField.ClrBit(Elem);
     return res;
 }
