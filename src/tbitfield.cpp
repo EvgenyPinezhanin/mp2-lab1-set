@@ -101,17 +101,18 @@ int TBitField::operator==(const TBitField &bf) const // сравнение
   int b = 1;
   for (int i = 0; i < MemLen; i++)
   {
-    if (pMem[i] != bf.pMem[i]) b = 0;
+	if (pMem[i] != bf.pMem[i]) return 0;
   }
   return b;
 }
 
 int TBitField::operator!=(const TBitField &bf) const // сравнение
 {
+  if (BitLen != bf.BitLen) return 1;
   int b = 0;
   for (int i = 0; i < MemLen; i++)
   {
-    if (pMem[i] != bf.pMem[i]) b = 1;
+    if (pMem[i] != bf.pMem[i]) return 1;
   }
   return b;
 }

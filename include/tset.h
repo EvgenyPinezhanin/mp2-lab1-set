@@ -20,6 +20,11 @@ public:
   TSet(const TSet &s);       // конструктор копирования
   TSet(const TBitField &bf); // конструктор преобразования типа
   operator TBitField();      // преобразование типа к битовому полю
+
+  void EvenElem() const;
+  void NotEvenElem() const;
+  void MultipleNumber(int k) const;
+
   // доступ к битам
   int GetMaxPower(void) const;     // максимальная мощность множества
   void InsElem(const int Elem);       // включить элемент в множество

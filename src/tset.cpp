@@ -32,6 +32,39 @@ TSet::operator TBitField()
     return res;
 }
 
+void TSet::EvenElem() const
+{
+	TSet m(MaxPower);
+	for (int i = 0; i < MaxPower; i++)
+	{
+		if (i % 2 == 0) m.InsElem(i);
+	}
+	m = m * *this;
+	cout << m;
+}
+
+void TSet::NotEvenElem() const
+{
+	TSet m(MaxPower);
+	for (int i = 0; i < MaxPower; i++)
+	{
+		if (i % 2 == 1) m.InsElem(i);
+	}
+	m = m * *this;
+	cout << m;
+}
+
+void TSet::MultipleNumber(int k) const
+{
+	TSet m(MaxPower);
+	for (int i = 0; i < MaxPower; i++)
+	{
+		if (i % k == 0) m.InsElem(i);
+	}
+	m = m * *this;
+	cout << m;
+}
+
 int TSet::GetMaxPower(void) const // получить макс. к-во эл-тов
 {
     return MaxPower;
@@ -119,18 +152,36 @@ TSet TSet::operator~(void) // дополнение
 
 istream &operator>>(istream &istr, TSet &s) // ввод
 {
-    for (int i = 0; i < s.MaxPower; i++)
+	char c;
+	int k;
+	istr >> c;
+	while(c != '}')
     {
-        istr >> s.BitField;
+        istr >> k >> c;
+		s.BitField.GetBit(k);
     }
     return istr;
 }
 
 ostream& operator<<(ostream &ostr, const TSet &s) // вывод
 {
+	ostr << "{";
+	bool b = false;
     for (int i = 0; i < s.MaxPower; i++)
     {
-        ostr << s.BitField;
+		if (s.BitField.GetBit(i))
+		{
+			if (!b)
+			{
+				ostr << i;
+				b = true;
+			}
+			else
+			{
+				ostr << ", " << i;
+			}
+		}
     }
+	ostr << "}";
     return ostr;
 }
